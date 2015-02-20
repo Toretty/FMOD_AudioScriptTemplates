@@ -1,7 +1,11 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
+Project("{0775541F-554B-2093-8EE5-2184436C230C}") = "FMOD_AudioScriptTemplates", "Assembly-CSharp-firstpass.csproj", "{A5882A59-53EB-87AF-7D58-96B7BD7F1893}"
+EndProject
 Project("{0775541F-554B-2093-8EE5-2184436C230C}") = "FMOD_AudioScriptTemplates", "Assembly-CSharp.csproj", "{41157154-4FA8-C555-CA86-B7D78926E5E1}"
+EndProject
+Project("{0775541F-554B-2093-8EE5-2184436C230C}") = "FMOD_AudioScriptTemplates", "Assembly-CSharp-Editor.csproj", "{4160C656-A0AE-B483-17E0-57D1208BCDB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +13,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5882A59-53EB-87AF-7D58-96B7BD7F1893}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5882A59-53EB-87AF-7D58-96B7BD7F1893}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5882A59-53EB-87AF-7D58-96B7BD7F1893}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5882A59-53EB-87AF-7D58-96B7BD7F1893}.Release|Any CPU.Build.0 = Release|Any CPU
 		{41157154-4FA8-C555-CA86-B7D78926E5E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{41157154-4FA8-C555-CA86-B7D78926E5E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41157154-4FA8-C555-CA86-B7D78926E5E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41157154-4FA8-C555-CA86-B7D78926E5E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4160C656-A0AE-B483-17E0-57D1208BCDB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4160C656-A0AE-B483-17E0-57D1208BCDB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4160C656-A0AE-B483-17E0-57D1208BCDB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4160C656-A0AE-B483-17E0-57D1208BCDB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
+					GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1
@@ -36,4 +48,5 @@ Global
 		$3.inheritsScope = text/plain
 		$3.scope = text/plain
 	EndGlobalSection
+
 EndGlobal
