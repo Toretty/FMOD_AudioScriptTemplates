@@ -23,8 +23,12 @@ public class FMOD_EventScript : MonoBehaviour {
 	public bool UseParameterChange = false;
 	public string ParameterName = "Write the name here";
 	public float NewParameterValue = 0.0f;
+	public bool UpdatePositionConstantly = false;
+	public bool UpdatePositionToOther = false;
+	public GameObject OtherPositionObject;
 	
 	private float originalParameterValue;
+	private FMOD.Studio.ATTRIBUTES_3D position;
 	
 	void Start(){
 		// INSTANTIATE THE EVENTS
@@ -43,17 +47,30 @@ public class FMOD_EventScript : MonoBehaviour {
 	}
 	
 	void Update(){
-		if(Input.GetKeyDown(KeyCode.H)){
-			ObjectStrangeParameter.setValue(NewParameterValue);
+
+		// CONTROLLING THE POSITION OF THE SOUND
+		if (UpdatePositionToOther || UpdatePositionConstantly) {
+
+			if(UpdatePositionConstantly){
+				position = FMOD.Studio.UnityUtil.to3DAttributes(this.transform.position);
+			}else{
+				position = FMOD.Studio.UnityUtil.to3DAttributes(this.OtherPositionObject.transform.position);
+			}
+
+			ObjectStrangeEvent.set3DAttributes(position);
 		}
-		
-		if (Input.GetKeyUp (KeyCode.H)) {
-			ObjectStrangeParameter.setValue(originalParameterValue);
-		}
-		
-		if(Input.GetKeyDown(KeyCode.E)){
-			FMOD_Stop(StopModeMethod.AllowFadeOut);
-		}
+
+//		if(Input.GetKeyDown(KeyCode.H)){
+//			ObjectStrangeParameter.setValue(NewParameterValue);
+//		}
+//		
+//		if (Input.GetKeyUp (KeyCode.H)) {
+//			ObjectStrangeParameter.setValue(originalParameterValue);
+//		}
+//		
+//		if(Input.GetKeyDown(KeyCode.E)){
+//			FMOD_Stop(StopModeMethod.AllowFadeOut);
+//		}
 	}
 	
 	/// <summary>
@@ -83,6 +100,4 @@ public class FMOD_EventScript : MonoBehaviour {
 			this.ObjectStrangeEvent.release();
 		}
 	}
-	
-	
 }

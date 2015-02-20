@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.05.00">
+    <object class="MasterBank" id="{8a7c91ca-a86f-47ac-9ed6-2cadd190788d}">
+        <property name="name">
+            <value>Master Bank</value>
+        </property>
+        <relationship name="folder">
+            <destination>{cc94a334-61a0-4d4f-b3bf-21400652071d}</destination>
+        </relationship>
+        <relationship name="buildSettings">
+            <destination>{2e30aa04-cdb2-4e31-afe5-88b3cb56176f}</destination>
+        </relationship>
+        <relationship name="buildHash">
+            <destination>{89173567-2289-48bc-a089-ed70ce5bf11b}</destination>
+        </relationship>
+    </object>
+    <object class="DesktopBuildSetting" id="{2e30aa04-cdb2-4e31-afe5-88b3cb56176f}">
+        <relationship name="compressionSettings">
+            <destination>{2c77c902-f5c6-456b-b23c-11a6de42aada}</destination>
+            <destination>{1d3cfc2e-02e4-4e22-b4da-1e1719f06966}</destination>
+            <destination>{0869c19b-72f7-42f7-a8bd-2f458237136e}</destination>
+        </relationship>
+        <relationship name="activeCompressionSetting">
+            <destination>{2c77c902-f5c6-456b-b23c-11a6de42aada}</destination>
+        </relationship>
+        <relationship name="buildHash">
+            <destination>{2a8350fd-65f9-44d3-9975-23b14df7e8e9}</destination>
+        </relationship>
+    </object>
+    <object class="MasterBankBuildHash" id="{89173567-2289-48bc-a089-ed70ce5bf11b}"/>
+    <object class="LossyCompressionSetting" id="{2c77c902-f5c6-456b-b23c-11a6de42aada}">
+        <property name="type">
+            <value>Vorbis</value>
+        </property>
+    </object>
+    <object class="PCMCompressionSetting" id="{1d3cfc2e-02e4-4e22-b4da-1e1719f06966}">
+        <property name="type">
+            <value>ADPCM</value>
+        </property>
+    </object>
+    <object class="PCMCompressionSetting" id="{0869c19b-72f7-42f7-a8bd-2f458237136e}">
+        <property name="type">
+            <value>PCM</value>
+        </property>
+    </object>
+    <object class="MasterBankBuildHash" id="{2a8350fd-65f9-44d3-9975-23b14df7e8e9}"/>
+</objects>

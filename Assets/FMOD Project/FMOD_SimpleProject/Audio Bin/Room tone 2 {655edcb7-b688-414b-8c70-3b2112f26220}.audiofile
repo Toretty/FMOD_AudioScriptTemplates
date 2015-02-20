@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.05.00">
+    <object class="AudioFile" id="{655edcb7-b688-414b-8c70-3b2112f26220}">
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>62</value>
+        </property>
+        <property name="lastModifiedDate">
+            <value>0</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/Room tone 2 {58170471-a57a-4303-bec5-a0737c39b667}.wav</value>
+        </property>
+        <relationship name="container">
+            <destination>{6362292c-f0bb-40e6-a5ab-1137d243da47}</destination>
+        </relationship>
+    </object>
+</objects>
