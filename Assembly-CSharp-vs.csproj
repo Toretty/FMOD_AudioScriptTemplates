@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\FMOD_EventScript.cs" />
+     <Compile Include="Assets\LevelScript.cs" />
      <None Include="Assets\StreamingAssets\FMOD_bank_list.txt" />
      <None Include="Assets\FMOD Project\FMOD_SimpleProject\Build\GUIDs.txt" />
  <Reference Include="UnityEngine.UI">

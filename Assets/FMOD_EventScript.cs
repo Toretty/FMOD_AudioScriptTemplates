@@ -29,7 +29,7 @@ public class FMOD_EventScript : MonoBehaviour {
 	
 	private float originalParameterValue;
 	private FMOD.Studio.ATTRIBUTES_3D position;
-	
+
 	void Start(){
 		// INSTANTIATE THE EVENTS
 		if (ObjectStrange != null) {
