@@ -26,9 +26,16 @@ public class FMOD_EventScript : MonoBehaviour {
 	public bool UpdatePositionConstantly = false;
 	public bool UpdatePositionToOther = false;
 	public GameObject OtherPositionObject;
-	
+
+	//Jacoberino stuffs that's not finished
+	public int numOfParams;
+	public PARAMETER_DESCRIPTION[] parameterDescription;
+	public FMOD.Studio.ParameterInstance[] parameterInstance;
+	//End of danger zone
+
 	private float originalParameterValue;
 	private FMOD.Studio.ATTRIBUTES_3D position;
+
 
 	void Start(){
 		// INSTANTIATE THE EVENTS
@@ -40,8 +47,19 @@ public class FMOD_EventScript : MonoBehaviour {
 			FMOD_Play();
 		}
 		if(UseParameterChange){
-			ObjectStrangeEvent.getParameter(ParameterName, out ObjectStrangeParameter);
-			ObjectStrangeParameter.getValue(out originalParameterValue);
+
+			ObjectStrangeEvent.getParameterCount(out numOfParams);//Get the number of parameters in the event instance
+			parameterInstance = new ParameterInstance[numOfParams];
+			parameterDescription = new PARAMETER_DESCRIPTION[numOfParams];
+
+			for(int i=0; i<numOfParams; i++){//run through all parameters and get descriptions of them
+				ObjectStrangeEvent.getParameterByIndex(i, out parameterInstance[i]);
+				parameterInstance[i].getDescription(out parameterDescription[i]);
+				print ("Param: '"+parameterDescription[i].name+"', minVal: "+parameterDescription[i].minimum+", maxVal: "+parameterDescription[i].maximum);//this should be rendered in the editor mads pls
+			}
+
+			//ObjectStrangeEvent.getParameter(ParameterName, out ObjectStrangeParameter);
+			//ObjectStrangeParameter.getValue(out originalParameterValue);
 		}
 		
 	}

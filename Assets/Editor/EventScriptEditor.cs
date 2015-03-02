@@ -87,14 +87,21 @@ public class EventScriptEditor : Editor {
 
 				}
 				GUILayout.EndHorizontal ();
-
-				GUILayout.BeginHorizontal ();
-				{	
-					GUILayout.Space(Row2);
-					myFMOD_EventScript.ParameterName = GUILayout.TextField(myFMOD_EventScript.ParameterName);
-					myFMOD_EventScript.NewParameterValue = EditorGUILayout.Slider(myFMOD_EventScript.NewParameterValue, 0.0f, 1.0f);
+				//foreach(FMOD.Studio.ParameterInstance paramInst in myFMOD_EventScript.parameterInstance){
+				for(int i=0; i<myFMOD_EventScript.numOfParams; i++){
+					GUILayout.BeginHorizontal ();
+					{	
+						GUILayout.Space(Row2);//OLD MADS STUFF BELOW:
+											//myFMOD_EventScript.ParameterName = GUILayout.TextField(myFMOD_EventScript.ParameterName);
+											//myFMOD_EventScript.NewParameterValue = EditorGUILayout.Slider(myFMOD_EventScript.NewParameterValue, 0.0f, 1.0f);
+						myFMOD_EventScript.parameterDescription[i].name = GUILayout.TextField(myFMOD_EventScript.parameterDescription[i].name);
+						//I think this might need revision possibly
+						myFMOD_EventScript.NewParameterValue = EditorGUILayout.Slider(myFMOD_EventScript.NewParameterValue, myFMOD_EventScript.parameterDescription[i].minimum, myFMOD_EventScript.parameterDescription[i].maximum);
+					}
+					GUILayout.EndHorizontal ();
+				//}
 				}
-				GUILayout.EndHorizontal ();
+
 				GUILayout.Label ("Note: Parameter is changed through calling the XXX(); function");
 				GUILayout.Space(Row1);
 
