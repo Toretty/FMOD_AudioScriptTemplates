@@ -5,16 +5,18 @@ using FMOD.Studio;
 
 [CustomEditor(typeof(FMOD_EventScript))]
 public class EventScriptEditor : Editor {
-	
+
+	private bool showInfo = false;
+
 	public override void OnInspectorGUI()
 	{
+
+
+
 		FMOD_EventScript myFMOD_EventScript = (FMOD_EventScript)target; 
-		bool showPosition = true;
 
 		int Row1 = 10;
 		int Row2 = 20;
-		int Row3 = 30;
-		int Row4 = 40;
 
 		GUILayout.BeginHorizontal ();
 		{	
@@ -26,11 +28,28 @@ public class EventScriptEditor : Editor {
 
 			myFMOD_EventScript.ObjectStrange = (FMODAsset)EditorGUILayout.ObjectField (myFMOD_EventScript.ObjectStrange, typeof(FMODAsset), false);
 		}
+
 		GUILayout.EndHorizontal ();	
 
 		if(myFMOD_EventScript.ObjectStrange != null)
 		{
 			////////////////////////////////////////////////////// General Properties
+			GUILayout.BeginHorizontal ();
+			{	
+				GUILayout.Space(Row1);
+				myFMOD_EventScript.UpdatePositionConstantly = GUILayout.Toggle(myFMOD_EventScript.UpdatePositionConstantly, "Update Location Constantly");
+				showInfo = GUILayout.Toggle(showInfo, "Info");
+			}
+			GUILayout.EndHorizontal ();
+
+			GUILayout.Space(5);
+			GUILayout.BeginHorizontal ();
+			if(showInfo){
+				GUILayout.Space(Row2);
+				GUILayout.TextArea ("When on, the position of the sound is constantly updated. When off, the sound will only position at the starting location and therefore not follow the object if moved.");
+			}
+			GUILayout.EndHorizontal ();
+
 			/// START AUTOMATICALLY
 			GUILayout.Space(Row1);
 
@@ -41,12 +60,11 @@ public class EventScriptEditor : Editor {
 			}
 			GUILayout.EndHorizontal ();
 
-			/// UPDATE LOCATION OF SOUND
-			GUILayout.Space(Row1);
+			GUILayout.Space(5);
 			GUILayout.BeginHorizontal ();
-			{	
-				GUILayout.Space(Row1);
-				myFMOD_EventScript.UpdatePositionConstantly = GUILayout.Toggle(myFMOD_EventScript.UpdatePositionConstantly, "Update Location constantly");
+			if(showInfo){
+				GUILayout.Space(Row2);
+				GUILayout.TextArea ("When on, the position of the sound is constantly updated. When off, the sound will only position at the starting location and therefore not follow the object if moved.");
 			}
 			GUILayout.EndHorizontal ();
 
@@ -58,6 +76,15 @@ public class EventScriptEditor : Editor {
 				myFMOD_EventScript.UpdatePositionToOther = GUILayout.Toggle(myFMOD_EventScript.UpdatePositionToOther, "Localize to another object");
 			}
 			GUILayout.EndHorizontal ();
+
+			GUILayout.Space(5);
+			GUILayout.BeginHorizontal ();
+			if(showInfo){
+				GUILayout.Space(Row2);
+				GUILayout.TextArea ("Use this feature to localize the sound to another GameObject.");
+			}
+			GUILayout.EndHorizontal ();
+
 			if(myFMOD_EventScript.UpdatePositionToOther){
 				GUILayout.BeginHorizontal ();
 				{	
@@ -67,7 +94,6 @@ public class EventScriptEditor : Editor {
 				GUILayout.EndHorizontal ();
 			}
 
-
 			////////////////////////////////////////////////////// PARAMETERS  
 			GUILayout.Space(Row1);
 			
@@ -75,6 +101,14 @@ public class EventScriptEditor : Editor {
 			{	
 				GUILayout.Space(Row1);
 				myFMOD_EventScript.UseParameterChange = GUILayout.Toggle(myFMOD_EventScript.UseParameterChange, "Enable Parameter control");
+			}
+			GUILayout.EndHorizontal ();
+
+			GUILayout.Space(5);
+			GUILayout.BeginHorizontal ();
+			if(showInfo){
+				GUILayout.Space(Row2);
+				GUILayout.TextArea ("This feature requires programmed activation. When enabled, you can control the parameter name and value from here.");
 			}
 			GUILayout.EndHorizontal ();
 
@@ -101,12 +135,25 @@ public class EventScriptEditor : Editor {
 					GUILayout.EndHorizontal ();
 				//}
 				}
+<<<<<<< Updated upstream
 
 				GUILayout.Label ("Note: Parameter is changed through calling the XXX(); function");
+=======
+				GUILayout.EndHorizontal ();
+
+				GUILayout.Space(5);
+				GUILayout.BeginHorizontal ();
+				if(showInfo){
+					GUILayout.Space(Row2);
+					GUILayout.TextArea ("Parameter is changed through calling the XX(); function");
+				}
+				GUILayout.EndHorizontal ();
+>>>>>>> Stashed changes
 				GUILayout.Space(Row1);
 
 			}
 		}
+
 	}
 
 }

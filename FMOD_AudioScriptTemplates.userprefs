@@ -1,9 +1,18 @@
 ﻿<Properties>
+<<<<<<< Updated upstream
   <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/FMOD_EventScript.cs">
     <Files>
       <File FileName="Assets/FMOD_EventScript.cs" Line="31" Column="25" />
       <File FileName="Assets/Editor/EventScriptEditor.cs" Line="98" Column="50" />
+=======
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Editor/EventScriptEditor.cs">
+    <Files>
+      <File FileName="Assets/Editor/EventScriptEditor.cs" Line="19" Column="17" />
+      <File FileName="Assets/FMOD_EventScript.cs" Line="1" Column="1" />
+      <File FileName="Assets/Editor/FMODEventEmitterInspector.cs" Line="1" Column="1" />
+>>>>>>> Stashed changes
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

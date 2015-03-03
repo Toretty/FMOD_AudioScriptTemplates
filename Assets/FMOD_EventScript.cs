@@ -10,6 +10,11 @@ public enum StopModeMethod
 	StopInstantly, AllowFadeOut, StopAndForget
 }
 
+public enum PlayModeMethod
+{
+	PlayAtPosition, PlayAndFollow
+}
+
 /// <summary>
 /// Used for start a FMOD studio Event. Only one can be used at one gameobject.
 /// </summary>
@@ -24,6 +29,7 @@ public class FMOD_EventScript : MonoBehaviour {
 	public string ParameterName = "Write the name here";
 	public float NewParameterValue = 0.0f;
 	public bool UpdatePositionConstantly = false;
+	public bool UpdateOtherPositionConstantly = false;
 	public bool UpdatePositionToOther = false;
 	public GameObject OtherPositionObject;
 
@@ -36,6 +42,10 @@ public class FMOD_EventScript : MonoBehaviour {
 	private float originalParameterValue;
 	private FMOD.Studio.ATTRIBUTES_3D position;
 
+<<<<<<< Updated upstream
+=======
+	private Vector3 EmitterPosition;
+>>>>>>> Stashed changes
 
 	void Start(){
 		// INSTANTIATE THE EVENTS
@@ -44,7 +54,12 @@ public class FMOD_EventScript : MonoBehaviour {
 		}
 		
 		if(StartAutomatically){
-			FMOD_Play();
+			if(UpdatePositionConstantly){
+				FMOD_Play(PlayModeMethod.PlayAndFollow);
+			}else{
+				FMOD_Play(PlayModeMethod.PlayAtPosition);
+			}
+
 		}
 		if(UseParameterChange){
 
@@ -67,15 +82,14 @@ public class FMOD_EventScript : MonoBehaviour {
 	void Update(){
 
 		// CONTROLLING THE POSITION OF THE SOUND
-		if (UpdatePositionToOther || UpdatePositionConstantly) {
+		if (UpdatePositionToOther) {
+			EmitterPosition = this.OtherPositionObject.transform.position;
+		} else {
+			EmitterPosition = this.transform.position;
+		}
 
-			if(UpdatePositionConstantly){
-				position = FMOD.Studio.UnityUtil.to3DAttributes(this.transform.position);
-			}else{
-				position = FMOD.Studio.UnityUtil.to3DAttributes(this.OtherPositionObject.transform.position);
-			}
-
-			ObjectStrangeEvent.set3DAttributes(position);
+		if (UpdatePositionConstantly) { 
+			ObjectStrangeEvent.set3DAttributes(FMOD.Studio.UnityUtil.to3DAttributes(this.EmitterPosition));
 		}
 
 //		if(Input.GetKeyDown(KeyCode.H)){
@@ -94,8 +108,14 @@ public class FMOD_EventScript : MonoBehaviour {
 	/// <summary>
 	/// If this script is not started automatically, this function starts the FMOD Asset event connected to it. Can only be started once.
 	/// </summary>
-	public void FMOD_Play(){
-		this.ObjectStrangeEvent.start ();
+	public void FMOD_Play(PlayModeMethod playAction){
+		if(playAction == PlayModeMethod.PlayAtPosition){
+			this.ObjectStrangeEvent.start ();
+		}
+		if(playAction == PlayModeMethod.PlayAndFollow){
+			this.ObjectStrangeEvent.start ();
+			UpdatePositionConstantly = true;
+		}
 	}
 	
 	/// <summary>
