@@ -35,8 +35,9 @@ public class FMOD_EventScript : MonoBehaviour {
 
 	//Jacoberino stuffs that's not finished
 	public int numOfParams;
-	public PARAMETER_DESCRIPTION[] parameterDescription;
-	public FMOD.Studio.ParameterInstance[] parameterInstance;
+	public PARAMETER_DESCRIPTION[] parameterDescriptions;
+	public FMOD.Studio.ParameterInstance[] parameterInstances;
+	public float[] parameterValues;
 	//End of danger zone
 
 	private float originalParameterValue;
@@ -61,23 +62,27 @@ public class FMOD_EventScript : MonoBehaviour {
 		if(UseParameterChange){
 
 			ObjectStrangeEvent.getParameterCount(out numOfParams);//Get the number of parameters in the event instance
-			parameterInstance = new ParameterInstance[numOfParams];
-			parameterDescription = new PARAMETER_DESCRIPTION[numOfParams];
+			parameterInstances = new ParameterInstance[numOfParams];
+			parameterDescriptions = new PARAMETER_DESCRIPTION[numOfParams];
+			parameterValues = new float[numOfParams];
 
 			for(int i=0; i<numOfParams; i++){//run through all parameters and get descriptions of them
-				ObjectStrangeEvent.getParameterByIndex(i, out parameterInstance[i]);
-				parameterInstance[i].getDescription(out parameterDescription[i]);
-				//print ("Param: '"+parameterDescription[i].name+"', minVal: "+parameterDescription[i].minimum+", maxVal: "+parameterDescription[i].maximum);//this should be rendered in the editor mads pls
+				ObjectStrangeEvent.getParameterByIndex(i, out parameterInstances[i]);
+				parameterInstances[i].getDescription(out parameterDescriptions[i]);
+				parameterInstances[i].getValue(out parameterValues[i]);
 			}
-			//OLD MADS STUFF
-			//ObjectStrangeEvent.getParameter(ParameterName, out ObjectStrangeParameter);
-			//ObjectStrangeParameter.getValue(out originalParameterValue);
 		}
 		
 	}
 	
 	void Update(){
 
+		//	UPDATE PARAMETER VALUES
+		if(numOfParams>=1){
+			for(int i=0; i<numOfParams; i++){//run through all parameters and get descriptions of them
+				parameterInstances[i].setValue(parameterValues[i]);
+			}
+		}
 
 		// CONTROLLING THE POSITION OF THE SOUND
 		if (UpdatePositionToOther) {
