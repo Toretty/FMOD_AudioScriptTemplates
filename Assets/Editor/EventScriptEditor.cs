@@ -10,9 +10,6 @@ public class EventScriptEditor : Editor {
 
 	public override void OnInspectorGUI()
 	{
-
-
-
 		FMOD_EventScript myFMOD_EventScript = (FMOD_EventScript)target; 
 
 		int Row1 = 10;
@@ -135,12 +132,6 @@ public class EventScriptEditor : Editor {
 					GUILayout.EndHorizontal ();
 				//}
 				}
-<<<<<<< Updated upstream
-
-				GUILayout.Label ("Note: Parameter is changed through calling the XXX(); function");
-=======
-				GUILayout.EndHorizontal ();
-
 				GUILayout.Space(5);
 				GUILayout.BeginHorizontal ();
 				if(showInfo){
@@ -148,7 +139,6 @@ public class EventScriptEditor : Editor {
 					GUILayout.TextArea ("Parameter is changed through calling the XX(); function");
 				}
 				GUILayout.EndHorizontal ();
->>>>>>> Stashed changes
 				GUILayout.Space(Row1);
 
 			}

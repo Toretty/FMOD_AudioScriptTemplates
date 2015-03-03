@@ -41,11 +41,8 @@ public class FMOD_EventScript : MonoBehaviour {
 
 	private float originalParameterValue;
 	private FMOD.Studio.ATTRIBUTES_3D position;
-
-<<<<<<< Updated upstream
-=======
+	
 	private Vector3 EmitterPosition;
->>>>>>> Stashed changes
 
 	void Start(){
 		// INSTANTIATE THE EVENTS
