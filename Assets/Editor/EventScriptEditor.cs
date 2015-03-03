@@ -114,7 +114,11 @@ public class EventScriptEditor : Editor {
 				GUILayout.BeginHorizontal ();
 				{	
 					GUILayout.Space(Row2);
-					GUILayout.Label ("Parameter Controls");
+					if(Application.isPlaying){//If the unity is in play mode
+						GUILayout.Label ("Parameter Controls");
+					}else{
+						GUILayout.Label ("(Parameter Controls can only be seen while in play mode)");
+					}
 
 				}
 				GUILayout.EndHorizontal ();
@@ -126,7 +130,6 @@ public class EventScriptEditor : Editor {
 											//myFMOD_EventScript.ParameterName = GUILayout.TextField(myFMOD_EventScript.ParameterName);
 											//myFMOD_EventScript.NewParameterValue = EditorGUILayout.Slider(myFMOD_EventScript.NewParameterValue, 0.0f, 1.0f);
 						myFMOD_EventScript.parameterDescription[i].name = GUILayout.TextField(myFMOD_EventScript.parameterDescription[i].name);
-						//I think this might need revision possibly
 						myFMOD_EventScript.NewParameterValue = EditorGUILayout.Slider(myFMOD_EventScript.NewParameterValue, myFMOD_EventScript.parameterDescription[i].minimum, myFMOD_EventScript.parameterDescription[i].maximum);
 					}
 					GUILayout.EndHorizontal ();

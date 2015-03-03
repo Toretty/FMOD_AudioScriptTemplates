@@ -30,7 +30,6 @@
         </relationship>
         <relationship name="parameters">
             <destination>{9173b957-3ca4-4712-bf2a-094de60ddd5f}</destination>
-            <destination>{6db192ba-1631-4e71-bb09-429f1572d159}</destination>
         </relationship>
         <relationship name="banks">
             <destination>{8a7c91ca-a86f-47ac-9ed6-2cadd190788d}</destination>
@@ -67,14 +66,6 @@
         </property>
         <relationship name="automationScale">
             <destination>{e8b96116-de95-4218-93d4-516249943d8f}</destination>
-        </relationship>
-    </object>
-    <object class="GameParameter" id="{6db192ba-1631-4e71-bb09-429f1572d159}">
-        <property name="name">
-            <value>SecondParameter</value>
-        </property>
-        <relationship name="automationScale">
-            <destination>{b88d631d-457a-4347-9206-92c1f19f833e}</destination>
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{b16cf49b-30e3-4515-a93e-e62b0d43eaf2}">
@@ -119,17 +110,6 @@
     <object class="AutomationScale" id="{e8b96116-de95-4218-93d4-516249943d8f}">
         <property name="curve">
             <value>LinearCurveStrategy{(0.000000,0.000000)(1.000000,1.000000)}</value>
-        </property>
-        <property name="associatedClassName">
-            <value>GameParameter</value>
-        </property>
-        <property name="associatedPropertyName">
-            <value>Parameter 1</value>
-        </property>
-    </object>
-    <object class="AutomationScale" id="{b88d631d-457a-4347-9206-92c1f19f833e}">
-        <property name="curve">
-            <value>LinearCurveStrategy{(0.000000,13.000000)(1.000000,37.000000)}</value>
         </property>
         <property name="associatedClassName">
             <value>GameParameter</value>

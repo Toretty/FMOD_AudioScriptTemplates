@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Editor/EventScriptEditor.cs">
     <Files>
-      <File FileName="Assets/FMOD_EventScript.cs" Line="21" Column="30" />
-      <File FileName="Assets/Editor/EventScriptEditor.cs" Line="63" Column="14" />
+      <File FileName="Assets/FMOD_EventScript.cs" Line="54" Column="33" />
+      <File FileName="Assets/Editor/EventScriptEditor.cs" Line="130" Column="78" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

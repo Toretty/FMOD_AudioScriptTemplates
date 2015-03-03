@@ -67,9 +67,9 @@ public class FMOD_EventScript : MonoBehaviour {
 			for(int i=0; i<numOfParams; i++){//run through all parameters and get descriptions of them
 				ObjectStrangeEvent.getParameterByIndex(i, out parameterInstance[i]);
 				parameterInstance[i].getDescription(out parameterDescription[i]);
-				print ("Param: '"+parameterDescription[i].name+"', minVal: "+parameterDescription[i].minimum+", maxVal: "+parameterDescription[i].maximum);//this should be rendered in the editor mads pls
+				//print ("Param: '"+parameterDescription[i].name+"', minVal: "+parameterDescription[i].minimum+", maxVal: "+parameterDescription[i].maximum);//this should be rendered in the editor mads pls
 			}
-
+			//OLD MADS STUFF
 			//ObjectStrangeEvent.getParameter(ParameterName, out ObjectStrangeParameter);
 			//ObjectStrangeParameter.getValue(out originalParameterValue);
 		}
@@ -77,6 +77,7 @@ public class FMOD_EventScript : MonoBehaviour {
 	}
 	
 	void Update(){
+
 
 		// CONTROLLING THE POSITION OF THE SOUND
 		if (UpdatePositionToOther) {
@@ -88,6 +89,7 @@ public class FMOD_EventScript : MonoBehaviour {
 		if (UpdatePositionConstantly) { 
 			ObjectStrangeEvent.set3DAttributes(FMOD.Studio.UnityUtil.to3DAttributes(this.EmitterPosition));
 		}
+
 
 //		if(Input.GetKeyDown(KeyCode.H)){
 //			ObjectStrangeParameter.setValue(NewParameterValue);
