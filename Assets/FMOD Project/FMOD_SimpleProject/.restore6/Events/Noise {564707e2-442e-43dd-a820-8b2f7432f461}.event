@@ -67,7 +67,7 @@
     </object>
     <object class="GameParameter" id="{9173b957-3ca4-4712-bf2a-094de60ddd5f}">
         <property name="name">
-            <value>VolumeParam</value>
+            <value>JustAnotherParameter</value>
         </property>
         <relationship name="automationCurves">
             <destination>{ff236078-d3bc-4ca0-92a1-69fa1324c7c4}</destination>
@@ -78,7 +78,7 @@
     </object>
     <object class="GameParameter" id="{6db192ba-1631-4e71-bb09-429f1572d159}">
         <property name="name">
-            <value>LowPassParam</value>
+            <value>SecondParameter</value>
         </property>
         <relationship name="automationCurves">
             <destination>{13dabcef-8539-4f26-9274-73a0fb1a4507}</destination>
