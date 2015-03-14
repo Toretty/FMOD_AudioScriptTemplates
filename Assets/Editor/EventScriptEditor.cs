@@ -5,14 +5,24 @@ using FMOD.Studio;
 
 [CustomEditor(typeof(FMOD_EventScript))]
 public class EventScriptEditor : Editor {
-
+	
 	private bool showInfo = false;
 	private int Row1 = 10;
 	private int Row2 = 20;
-	private Bounds bounds;
-
+	private int Row3 = 30;
+	private Bounds bounds1;
+	private bool showObjects = false;
+	private bool showPosition = false;
+	private Vector3 emittingPosition;
+	private Vector3 newPosition;
+	public GameObject source;
+	
 	FMOD_EventScript myFMOD_EventScript;
-
+	
+	void Awake(){
+		
+	}
+	
 	/// <summary>
 	/// Modifies the Inspector for FMOD_EventScript
 	/// </summary>
@@ -22,18 +32,18 @@ public class EventScriptEditor : Editor {
 		Display_FmodAsset ();
 		Display_AssetControls ();
 	}
-
+	
 	/// <summary>
-	/// Displays Assets control options
+	/// Displays Assets control options	
 	/// </summary>
 	void Display_AssetControls(){
 		if (myFMOD_EventScript.ObjectStrange != null) {
-
+			
 			Display_GeneralControls();
 			Display_ParameterControl();
 		}
 	}
-
+	
 	/// <summary>
 	/// Checks whether there is an asset or not, and then generates inspector display for it. 
 	/// </summary>
@@ -51,7 +61,7 @@ public class EventScriptEditor : Editor {
 		
 		GUILayout.EndHorizontal ();	
 	}
-
+	
 	/// <summary>
 	/// Displays the general controls like "Update Location Constantly", "Start Automatically, Localize to an object"
 	/// </summary>
@@ -108,29 +118,51 @@ public class EventScriptEditor : Editor {
 		GUILayout.EndHorizontal ();
 		
 		if (myFMOD_EventScript.UpdatePositionToOther) {
-			GUILayout.BeginHorizontal ();
+			
+			EditorGUILayout.BeginHorizontal ();
 			{	
-				GUILayout.Space (Row2);
-				myFMOD_EventScript.OtherPositionObject = (GameObject)EditorGUILayout.ObjectField (myFMOD_EventScript.OtherPositionObject, typeof(GameObject), false);
-
-
-
-
+				GUILayout.Space (Row3);
+				EditorGUILayout.BeginVertical ();
+				string ChooseObject = "Select a GameObject";
+				showObjects = EditorGUILayout.Foldout(showObjects, ChooseObject);
+				
+				if(showObjects)
+				{ 
+					showPosition = false;
+					source = (GameObject)EditorGUILayout.ObjectField("GameObject: ", source, typeof(GameObject), true);
+					if(source != null){
+						myFMOD_EventScript.OtherPositionObject = source;
+					}
+				}
+				EditorGUILayout.EndVertical ();
 			}
-			GUILayout.EndHorizontal ();
+			EditorGUILayout.EndHorizontal ();
+			
 			EditorGUILayout.BeginHorizontal();
-			GUILayout.Space (Row2);
-			bounds = EditorGUILayout.BoundsField(bounds);
-			Mesh mesh = (Mesh)((MeshFilter)myFMOD_EventScript.OtherPositionObject.GetComponent(typeof(MeshFilter))).sharedMesh;
-			//MeshFilter meshFilter = Selection.activeTransform.GetComponentInChildren(MeshFilter);
-			if (mesh)
 			{
-				bounds = mesh.bounds;
+				GUILayout.Space (Row3);
+				EditorGUILayout.BeginVertical ();
+				string positionString = "Select a Position";
+				// Foldout section. 
+				showPosition = EditorGUILayout.Foldout(showPosition, positionString);
+				myFMOD_EventScript.UpdatePositionToOtherPosition = showPosition;
+				
+				if(showPosition)
+				{
+					showObjects = false;
+					string stringForPos = "Position";
+					newPosition = EditorGUILayout.Vector3Field(stringForPos,newPosition);
+					myFMOD_EventScript.UpdatePositionToOtherPositionVector = newPosition;
+				}
+				EditorGUILayout.EndVertical ();
 			}
 			EditorGUILayout.EndHorizontal();
 		}
 	}
-
+	
+	/// <summary>
+	/// Displays the parameter control.
+	/// </summary>
 	void Display_ParameterControl(){
 		GUILayout.Space (Row1);
 		
@@ -151,6 +183,7 @@ public class EventScriptEditor : Editor {
 		
 		if (myFMOD_EventScript.UseParameterChange) {
 			
+			/////////////////////////////// Activate button
 			GUILayout.BeginHorizontal ();
 			{	
 				GUILayout.Space (Row2);
@@ -159,19 +192,19 @@ public class EventScriptEditor : Editor {
 				} else {
 					GUILayout.Label ("(Parameter Controls are only visible while in play mode)");
 				}
-				
 			}
 			GUILayout.EndHorizontal ();
-			//foreach(FMOD.Studio.ParameterInstance paramInst in myFMOD_EventScript.parameterInstance){
+			
+			/////////////////////////////// Find Parameters 
 			for (int i=0; i<myFMOD_EventScript.numOfParams; i++) {
 				GUILayout.BeginHorizontal ();
 				{	
 					GUILayout.Space (Row2);
 					myFMOD_EventScript.parameterDescriptions [i].name = GUILayout.TextField (myFMOD_EventScript.parameterDescriptions [i].name);
 					myFMOD_EventScript.parameterValues [i] = EditorGUILayout.Slider (myFMOD_EventScript.parameterValues [i], myFMOD_EventScript.parameterDescriptions [i].minimum, myFMOD_EventScript.parameterDescriptions [i].maximum);
+					// Prob, need to make this realtime. 
 				}
 				GUILayout.EndHorizontal ();
-				//}
 			}
 			GUILayout.Space (5);
 			GUILayout.BeginHorizontal ();

@@ -31,20 +31,22 @@ public class FMOD_EventScript : MonoBehaviour {
 	public bool UpdatePositionConstantly = false;
 	public bool UpdateOtherPositionConstantly = false;
 	public bool UpdatePositionToOther = false;
+	public bool UpdatePositionToOtherPosition = false;
+	public Vector3 UpdatePositionToOtherPositionVector = new Vector3 (0.0f,0.0f,0.0f);
 	public GameObject OtherPositionObject;
-
+	
 	//Jacoberino stuffs that's not finished
 	public int numOfParams;
 	public PARAMETER_DESCRIPTION[] parameterDescriptions;
 	public FMOD.Studio.ParameterInstance[] parameterInstances;
 	public float[] parameterValues;
 	//End of danger zone
-
+	
 	private float originalParameterValue;
 	private FMOD.Studio.ATTRIBUTES_3D position;
 	
 	private Vector3 EmitterPosition;
-
+	
 	void Start(){
 		// INSTANTIATE THE EVENTS
 		if (ObjectStrange != null) {
@@ -57,15 +59,15 @@ public class FMOD_EventScript : MonoBehaviour {
 			}else{
 				FMOD_Play(PlayModeMethod.PlayAtPosition);
 			}
-
+			
 		}
 		if(UseParameterChange){
-
+			
 			ObjectStrangeEvent.getParameterCount(out numOfParams);//Get the number of parameters in the event instance
 			parameterInstances = new ParameterInstance[numOfParams];
 			parameterDescriptions = new PARAMETER_DESCRIPTION[numOfParams];
 			parameterValues = new float[numOfParams];
-
+			
 			for(int i=0; i<numOfParams; i++){//run through all parameters and get descriptions of them
 				ObjectStrangeEvent.getParameterByIndex(i, out parameterInstances[i]);
 				parameterInstances[i].getDescription(out parameterDescriptions[i]);
@@ -76,37 +78,43 @@ public class FMOD_EventScript : MonoBehaviour {
 	}
 	
 	void Update(){
-
+		
 		//	UPDATE PARAMETER VALUES
 		if(numOfParams>=1){
 			for(int i=0; i<numOfParams; i++){//run through all parameters and get descriptions of them
 				parameterInstances[i].setValue(parameterValues[i]);
 			}
 		}
-
+		
 		// CONTROLLING THE POSITION OF THE SOUND
 		if (UpdatePositionToOther) {
-			EmitterPosition = this.OtherPositionObject.transform.position;
+			if(UpdatePositionToOtherPosition){
+				EmitterPosition = this.UpdatePositionToOtherPositionVector;
+			}else{
+				EmitterPosition = this.OtherPositionObject.transform.position;
+			}
+			
+			
 		} else {
 			EmitterPosition = this.transform.position;
 		}
-
+		
 		if (UpdatePositionConstantly) { 
 			ObjectStrangeEvent.set3DAttributes(FMOD.Studio.UnityUtil.to3DAttributes(this.EmitterPosition));
 		}
-
-
-//		if(Input.GetKeyDown(KeyCode.H)){
-//			ObjectStrangeParameter.setValue(NewParameterValue);
-//		}
-//		
-//		if (Input.GetKeyUp (KeyCode.H)) {
-//			ObjectStrangeParameter.setValue(originalParameterValue);
-//		}
-//		
-//		if(Input.GetKeyDown(KeyCode.E)){
-//			FMOD_Stop(StopModeMethod.AllowFadeOut);
-//		}
+		
+		
+		//		if(Input.GetKeyDown(KeyCode.H)){
+		//			ObjectStrangeParameter.setValue(NewParameterValue);
+		//		}
+		//		
+		//		if (Input.GetKeyUp (KeyCode.H)) {
+		//			ObjectStrangeParameter.setValue(originalParameterValue);
+		//		}
+		//		
+		//		if(Input.GetKeyDown(KeyCode.E)){
+		//			FMOD_Stop(StopModeMethod.AllowFadeOut);
+		//		}
 	}
 	
 	/// <summary>
